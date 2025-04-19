@@ -1,0 +1,61 @@
+{% extends 'frontend/base.html' %}
+{% load static i18n %}
+{% block content %}
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-text">
+                        <h2>Make Contribution</h2>
+                        <div class="div-dec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <div class="container">
+        <div class="register-form border-shadow custom-width">
+            {% if messages %}
+                <div class="message-container" id="alert_message">
+                    {% for message in messages %}
+                        <div class="notification {{message.tags}} fl-wrap">
+                            <p>{{ message }}</p>
+                            <a class="notification-close" href="#"><i class="fa fa-times"></i></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <h5 class="form-header">Submit chargeback for failed transaction</h5>
+            <form action="{% url 'transaction:chargeback_form' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ user.pk }}">
+                <input type="hidden" name="transaction_id" value="">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="mb-3"><span>Transaction Id:</span> <span class="ms-2">879789hjduyghdghfdgh</span></p>
+                        <div class="form-group">
+                            <label class="mb-2">Message</label>
+                            <textarea name="message" id="id_message" class="form-control" required>
+
+                            </textarea>  
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <button type="submit" class="orange-button">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(".message-container .notification-close").on("click", function(){
+            $(this).closest(".message-container").slideUp(300)
+        })
+    </script>
+{% endblock %}

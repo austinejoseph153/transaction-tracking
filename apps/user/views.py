@@ -113,3 +113,14 @@ def user_contribution_list(request):
     else:
         return redirect("user:login")
 
+def get_user_failed_transaction(request):
+    user = user_is_authenticated(request)
+    if user:
+        context = {}
+        failed_transactions = FailedTransaction.objects.filter(contribution__user=user)
+        context["user"] = user
+        context["failed_transactions"] = failed_transactions
+        return render(request,"user/dashboard/failed_transaction.html", context=context)
+    else:
+        return redirect("user:login")
+

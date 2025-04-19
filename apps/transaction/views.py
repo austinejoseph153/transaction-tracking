@@ -46,6 +46,40 @@ class DailyContributionTemplateView(TemplateView):
             messages.error(request, _('Please fill the form correctly'))
             return super(DailyContributionTemplateView, self).render_to_response(context)
 
+class ChargeBackFormTemplateView(TemplateView):
+    template_name = "transaction/charge_back_form.html"
+
+    def render_to_response(self, context, **kwargs):
+        user = user_is_authenticated(self.request)
+        if not user:
+            return redirect("user:login")
+        response = super(ChargeBackFormTemplateView, self).render_to_response(context, **kwargs)
+        return response
+    
+    def get_context_data(self, **kwargs):
+        context = super(ChargeBackFormTemplateView, self).get_context_data(**kwargs)
+        context["user"] = user_is_authenticated(self.request)
+        return context
+    
+    def post(self, request, **kwargs):
+        context = {}
+        user_id = request.POST.get("user_id")
+        transaction_id = request.POST.get("transaction_id")
+        if not user_id or not transaction_id:
+            messages.error(request, "sufficient information was not provided to perform this action")
+            return super(ChargeBackFormTemplateView, self).render_to_response(context)
+        submitted_by = User.objects.get(pk=user_id)
+        transaction = FailedTransaction.objects.get(pk=transaction_id)
+        message = request.POST.get("message" or None)
+        if not message:
+            messages.error(request,"please tell us the reason for submitting this charge back!")
+            return super(ChargeBackFormTemplateView, self).render_to_response(context)
+        charge_back = ChargebackForm(
+            failed_transaction=transaction,
+            submitted_by = submitted_by,
+            explanation = message
+
+        )
 # pament page for daily contribution 
 def daily_contribution_payment(request, slug):
     user = user_is_authenticated(request)

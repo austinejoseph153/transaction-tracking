@@ -12534,15 +12534,18 @@ div.ck.ck-editor__main .ck-content p {
 .crancy-table__main .crancy-table__body td div.status span{
   font-size: 12px;
 }
-.crancy-table__main .crancy-table__body td div.status.failed{
+.crancy-table__main .crancy-table__body td div.status.failed,
+.crancy-table__main .crancy-table__body td div.status.rejected{
   background-color: #ECC8C5;
   color: #AB3331;
 }  
-.crancy-table__main .crancy-table__body td div.status.success{
+.crancy-table__main .crancy-table__body td div.status.success,
+.crancy-table__main .crancy-table__body td div.status.resolved{
   background: #5ECFB1;
   color:rgba(255,255,255,1);
 } 
-.crancy-table__main .crancy-table__body td div.status.pending{
+.crancy-table__main .crancy-table__body td div.status.pending,
+.crancy-table__main .crancy-table__body td div.status.under_review{
   background-color: #F7F3D7;
   color: #927238;
 }

@@ -31,10 +31,23 @@ class DailyContribution(models.Model):
         ordering = ['-date']
 
 class FailedTransaction(models.Model):
+    PENDING = "pending"
+    UNDER_REVIEW = "under_review"
+    RESOLVED = "resolved"
+    REJECTED = "rejected"
+
+    STATUS_CHOICES = (
+        (PENDING,"PENDING"),
+        (UNDER_REVIEW, "UNDER_REVIEW"),
+        (RESOLVED, "RESOLVED"),
+        (REJECTED, "REJECTED"),
+    )
+    
     contribution = models.ForeignKey(DailyContribution, on_delete=models.CASCADE)
     failure_reason = models.CharField(max_length=500)
     detected_at = models.DateTimeField(auto_now_add=True)
     resolved = models.BooleanField(default=False)
+    status = models.CharField(max_length=20, default="pending", choices=STATUS_CHOICES)
     resolved_at = models.DateTimeField(blank=True, null=True, verbose_name=_("Resolution Date"))
     resolved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("Resolved By"), blank=True, null=True)
     notes = models.TextField(verbose_name=_("Resolution Notes"), blank=True, null=True)
