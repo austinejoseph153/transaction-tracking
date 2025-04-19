@@ -1,0 +1,75 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-text">
+                        <h2>Log into Account</h2>
+                        <div class="div-dec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="container">
+        <div class="register-form custom-width border-shadow">
+            {% if messages %}
+                <div class="message-container" id="alert_message">
+                    {% for message in messages %}
+                        <div class="notification {{message.tags}} fl-wrap">
+                            <p>{{ message }}</p>
+                            <a class="notification-close" href="#"><i class="fa fa-times"></i></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <h5 class="form-header">log into your account</h5>
+            <form action="{% url 'user:login' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>{{ form.username.label }}</label>
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>{{ form.password.label }}</label>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                    <small class="text-danger">{{ error }}</small>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                        <p>don't have an account <a href="{% url 'user:create_account' %}">sign up</a></p>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="submit" class="orange-button">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(".message-container .notification-close").on("click", function(){
+            $(this).closest(".message-container").slideUp(300)
+        })
+    </script>
+{% endblock %}

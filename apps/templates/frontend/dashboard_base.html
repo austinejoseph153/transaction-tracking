@@ -1,0 +1,227 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="#" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Site Title -->
+    <title>Transaction Tracking</title>
+    <!-- Fav Icon -->
+
+    <!--  Stylesheet -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/slick.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/font-awesome-all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/charts.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/datatables.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/fancy-box.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/nice-select.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/pikaday.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}" />
+    {% block extra_css %}{% endblock %}
+</head>
+<body id="crancy-dark-light">
+    <div class="crancy-body-area">
+        <!-- crancy Admin Menu -->
+        <div class="crancy-smenu" id="CrancyMenu">
+            <!-- Admin Menu -->
+            <div class="admin-menu">
+                <!-- Logo -->
+                <div class="logo crancy-sidebar-padding pd-right-0">
+                    <a class="crancy-logo" href="{% url 'pages:index' %}">
+                    <!-- Logo for Default -->
+                    <img class="crancy-logo__main" src="{% static 'dashboard/img/logo.png' %}" alt="#" />
+                    <img
+                        class="crancy-logo__main--dark"
+                        src="{% static 'dashboard/img/logo-dark.html' %}"
+                        alt="#"
+                    />
+                    <!-- Logo for Dark Version -->
+                    <img
+                        class="crancy-logo__main--small"
+                        src="{% static 'dashboard/img/logo-icon.png' %}"
+                        alt="#"
+                    />
+                    <img
+                        class="crancy-logo__main--small--dark"
+                        src="{% static 'dashboard/img/logo-icon-dark.html' %}"
+                        alt="#"
+                    />
+                    </a>
+                    <div id="crancy__sicon" class="crancy__sicon close-icon">
+                    <img src="{% static 'dashboard/img/arrow-icon.svg' %}" />
+                    </div>
+                </div>
+
+                <!-- Main Menu -->
+                <div class="admin-menu__one crancy-sidebar-padding mg-top-20">
+                    <h4 class="admin-menu__title">Menu</h4>
+                    <!-- Nav Menu -->
+                    <div class="menu-bar">
+                        <ul id="CrancyMenu" class="menu-bar__one crancy-dashboard-menu">
+                            <li>
+                                <a class="collapsed" href="{% url 'user:user_dashboard' %}"
+                                ><span class="menu-bar__text">
+                                    <span class="crancy-menu-icon crancy-svg-icon__v1">
+                                        <svg
+                                        class="crancy-svg-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="22"
+                                        viewBox="0 0 20 22"
+                                        fill="none"
+                                        >
+                                        <path
+                                            d="M14 21V17C14 14.7909 12.2091 13 10 13C7.79086 13 6 14.7909 6 17V21M19 9.15033V16.9668C19 19.1943 17.2091 21 15 21H5C2.79086 21 1 19.1943 1 16.9668V9.15033C1 7.93937 1.53964 6.7925 2.46986 6.02652L7.46986 1.90935C8.9423 0.696886 11.0577 0.696883 12.5301 1.90935L17.5301 6.02652C18.4604 6.7925 19 7.93937 19 9.15033Z"
+                                            stroke-width="1.5"
+                                        />
+                                        </svg>
+                                    </span>
+                                    <span class="menu-bar__name">customer info</span></span
+                                ></a
+                                >
+                            </li>
+                            <li>
+                                <a class="collapsed" href="{% url 'user:user_contributions' %}"
+                                ><span class="menu-bar__text">
+                                    <span class="crancy-menu-icon crancy-svg-icon__v1">
+                                        <svg
+                                        class="crancy-svg-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="22"
+                                        viewBox="0 0 20 22"
+                                        fill="none"
+                                        >
+                                        <path
+                                            d="M14 21V17C14 14.7909 12.2091 13 10 13C7.79086 13 6 14.7909 6 17V21M19 9.15033V16.9668C19 19.1943 17.2091 21 15 21H5C2.79086 21 1 19.1943 1 16.9668V9.15033C1 7.93937 1.53964 6.7925 2.46986 6.02652L7.46986 1.90935C8.9423 0.696886 11.0577 0.696883 12.5301 1.90935L17.5301 6.02652C18.4604 6.7925 19 7.93937 19 9.15033Z"
+                                            stroke-width="1.5"
+                                        />
+                                        </svg>
+                                    </span>
+                                    <span class="menu-bar__name">My Contributions</span></span
+                                ></a
+                                >
+                            </li>
+                            <li>
+                                <a href="{% url 'user:logout' %}" class="collapsed"
+                                ><span class="menu-bar__text">
+                                    <span class="crancy-menu-icon crancy-svg-icon__v1">
+                                    <svg
+                                        class="crancy-svg-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="22"
+                                        height="18"
+                                        viewBox="0 0 22 18"
+                                        fill="none"
+                                    >
+                                        <path
+                                        d="M19 11L20.2929 9.70711C20.6834 9.31658 20.6834 8.68342 20.2929 8.29289L19 7"
+                                        stroke="#191B23"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        />
+                                        <path
+                                        d="M20 9H12M5 17C2.79086 17 1 15.2091 1 13V5C1 2.79086 2.79086 1 5 1M5 17C7.20914 17 9 15.2091 9 13V5C9 2.79086 7.20914 1 5 1M5 17H13C15.2091 17 17 15.2091 17 13M5 1H13C15.2091 1 17 2.79086 17 5"
+                                        stroke="#191B23"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        />
+                                    </svg>
+                                    </span>
+                                    <span class="menu-bar__name">Logout</span></span
+                                ></a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Nav Menu -->
+                </div>
+            </div>
+            <!-- End Admin Menu -->
+        </div>
+        <!-- End crancy Admin Menu -->
+  
+        <!-- Start Header -->
+        <header class="crancy-header">
+            <div class="container g-0">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <!-- Dashboard Header -->
+                        <div class="crancy-header__inner">
+                            <div class="crancy-header__middle">
+                                <div
+                                    id="crancy__sicon"
+                                    class="crancy__sicon close-icon d-none"
+                                    >
+                                    <img src="{% static 'dashboard/img/arrow-icon.svg' %}" />
+                                </div>
+                                <div class="crancy-header__heading">
+                                    <h3 class="crancy-header__title m-0">{{ user.first_name }} Dashboard</h3>
+                                    <p class="crancy-header__text">
+                                        Welcome back {{user.first_name}} {{user.last_name}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+  
+        <!-- crancy Dashboard -->
+        <section class="crancy-adashboard crancy-show">
+            <div class="container container__bscreen">
+                <!-- contents goes here  -->
+                <div class="row">
+                    <div class="col-sm-12 mt-2 mb-2">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="notification {{message.tags}} fl-wrap">
+                                    <p>{{ message }}</p>
+                                    <a class="notification-close" href="#"><i class="fa fa-times"></i></a>
+                                </div>                                                
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% block content %}{% endblock %}
+            </div>
+        </section>
+        <!-- End crancy Dashboard -->
+    </div>
+
+    <!--  Scripts -->
+    <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery-migrate.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/charts.js' %}"></script>
+    <script src="{% static 'dashboard/js/final-countdown.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/fancy-box.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/datatables.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/circle-progress.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/nice-select.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/pikaday.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/main.js' %}"></script>
+    <script>
+        $(".notification-close").on("click", function(){
+            $(this).closest(".notification").slideUp(300)
+        })
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

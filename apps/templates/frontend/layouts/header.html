@@ -1,0 +1,34 @@
+{% load static i18n %}
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'pages:index' %}" class="logo">
+                        <img src="{% static 'frontend/assets/images/logo.png' %}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="{% url 'pages:index' %}" class="">Home</a></li>
+                        <li class="scroll-to-section"><a href="{% url 'pages:contact' %}">Contact</a></li>
+                        <li class="scroll-to-section"><a href="{% url 'transaction:daily_contribution' %}">Contribution</a></li>
+                        {% if user %}
+                            <li class="scroll-to-section"><a href="{% url 'user:user_dashboard' %}">Dashboard</a></li>
+                        {% else %}
+                            <li class="scroll-to-section"><a href="{% url 'user:login' %}">Login</a></li>
+                        {% endif %} 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->

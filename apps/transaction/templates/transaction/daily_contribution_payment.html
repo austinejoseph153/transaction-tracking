@@ -1,0 +1,50 @@
+{% extends 'frontend/base.html' %}
+{% load static i18n %}
+
+{% block extra_css %}
+    
+{% endblock %}
+
+{% block content %}
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-text">
+                        <h2>Contribution Payment</h2>
+                        <div class="div-dec"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <div class="container">
+        <div class="payment-page border-shadow">
+            <h5 class="mb-3">Transaction Analysis</h5>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><span>First Name</span></td>
+                        <td><span>{{ user.first_name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Last Name</span></td>
+                        <td><span>{{ user.last_name }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Amount</span></td>
+                        <td><span>&#8358 {{ daily_contribution.amount|floatformat:0 }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="links">
+                <a href="{% url 'transaction:initiate_payment' slug=daily_contribution.uuid %}" class="proceed">Proceed to pay</a>
+                <a href="{% url 'transaction:cancel_daily_contribution' slug=daily_contribution.uuid %}" class="cancel">cancel</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

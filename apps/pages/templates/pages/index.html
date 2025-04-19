@@ -1,0 +1,122 @@
+{% extends 'frontend/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="swiper-container" id="top">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-inner" style="background-image:url('../../../static/frontend/assets/images/slide-01.jpg')">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="header-text">
+                                    <h2>Take the <em>first step</em> towards financial <em>freedom</em></h2>
+                                    <div class="div-dec"></div>
+                                    <p>
+                                        Our savings platform is designed to help you set goals, 
+                                        track progress, and make informed decisions about your money. 
+                                        Start saving today and watch your future unfold.
+                                    </p>
+                                    <div class="buttons">
+                                        <div class="green-button">
+                                            <a href="{% url 'user:user_dashboard' %}">Get started</a>
+                                        </div>
+                                        <div class="orange-button">
+                                            <a href="{% url 'pages:contact' %}">Contact Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner" style="background-image:url('../../../static/frontend/assets/images/slide-02.jpg')">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="header-text">
+                                    <h2><em>Saving</em> just got a whole lot <em>easier</em> for you</h2>
+                                    <div class="div-dec"></div>
+                                    <p>
+                                        Discover simple, smart ways to
+                                        grow your savings, reduce debt, and achieve financial freedom.
+                                        Your financial goals are within reach – let's get started
+                                    </p>
+                                    <div class="buttons">
+                                        <div class="green-button">
+                                            <a href="{% url 'user:user_dashboard' %}">Get started</a>
+                                        </div>
+                                        <div class="orange-button">
+                                            <a href="{% url 'pages:contact' %}">Contact Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-inner" style="background-image:url(../../../static/frontend/assets/images/slide-03.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="header-text">
+                                    <h2>Best One in Town<br>&amp; Saving <em>Services</em></h2>
+                                    <div class="div-dec"></div>
+                                    <p>
+                                        Start building the future you want, one savings goal at a 
+                                        time. Get the tools and insights you need to take control of 
+                                        your finances and make your money work for you.
+                                    </p>
+                                    <div class="buttons">
+                                        <div class="green-button">
+                                            <a href="{% url 'user:user_dashboard' %}">Get started</a>
+                                        </div>
+                                        <div class="orange-button">
+                                            <a href="{% url 'pages:contact' %}">Contact Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xl-4">
+                    <div class="service-item">
+                        <i class="fas fa-archive"></i>
+                        <h4>Create Account</h4>
+                        <p>create an account with us</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="service-item">
+                        <i class="fas fa-cloud"></i>
+                        <h4>Add funds</h4>
+                        <p>add money to your wallet</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-4">
+                    <div class="service-item">
+                        <i class="fas fa-charging-station"></i>
+                        <h4>save money</h4>
+                        <p>save your money with us</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'frontend/dashboard_base.html' %}
+{% load static i18n %}
+
+{% block content %}
+    {% if contribution_list|length > 0 %}
+    <div class="crancy-table crancy-table--v3 mg-top-30" style="overflow-x: auto;">
+        <!-- crancy Table -->
+        <h3>My Contributions</h3>
+        <table id="" class="crancy-table__main crancy-table__main-v3">
+            <!-- crancy Table Head -->
+            <thead class="crancy-table__head">
+                <tr>
+                    <th class="ref_id">
+                        Reference id
+                    </th>
+                    <th>
+                        <div class="name">
+                            <span>User</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="date">
+                            <span>Date</span>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="price">
+                            Amount
+                        </div>
+                    </th>
+                    <th>
+                        <div>Payment Status</div>
+                    </th>
+                </tr>
+            </thead>
+            <!-- crancy Table Body -->
+            <tbody class="crancy-table__body">
+                {% for contribution in contribution_list %}
+                    <tr>
+                        <td>
+                            <div class="ref_id">
+                                <h4 class="crancy-table__product-title">
+                                    <span>{{contribution.uuid}}</span>
+                                </h4>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="name">
+                                <h4 class="crancy-table__product-title">
+                                    <span>{{ contribution.user }}</span>
+                                </h4>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="date">
+                                <h4 class="crancy-table__product-title">
+                                    <span>{{ contribution.date }}</span>
+                                </h4>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price">
+                                <h4 class="crancy-table__product-title">
+                                    <span>&#8358 {{ contribution.amount|floatformat:0 }}</span>
+                                </h4>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="status {{ contribution.status }}">
+                                <span>{{ contribution.status }}</span>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <!-- End crancy Table Body -->
+        </table>
+        <!-- End crancy Table -->
+    </div>
+    {% else %}
+        <div class="empty-box">
+            <img src="{% static 'frontend/images/empty-icon.jpg' %}" alt="">
+            <h4 class="text-black mb15">No orders yet</h4>
+            <a href="{% url 'pages:home' %}">Go Home</a>
+        </div>
+    {% endif %}
+{% endblock %}
