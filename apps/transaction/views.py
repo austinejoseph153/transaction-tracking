@@ -72,17 +72,19 @@ class ChargeBackFormTemplateView(TemplateView):
         submitted_by = User.objects.get(pk=user_id)
         transaction = FailedTransaction.objects.get(contribution__uuid=transaction_id)
         message = request.POST.get("message")
-        print("mesg",message)
         if not message:
-            print("kkhh")
             messages.error(request,"please tell us the reason for submitting this charge back!")
             return super(ChargeBackFormTemplateView, self).render_to_response(context)
+        if transaction.charge_back_submitted:
+            messages.warning(request, "a query has already been submitted for this transaction")
+            return redirect("user:user_dashboard")
         charge_back = ChargebackForm(
             failed_transaction=transaction,
             submitted_by = submitted_by,
             explanation = message
 
         )
+        charge_back.save()
         # send notification for charge back to user
         email_message = """""
                     Hey, just a heads up - your recent transaction didn't go through. 
