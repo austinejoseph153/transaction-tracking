@@ -12531,6 +12531,11 @@ div.ck.ck-editor__main .ck-content p {
   border-radius: 5px;
   text-transform: capitalize;
 }
+.crancy-table__main .crancy-table__body td div.action a{
+  width: 110px;
+  font-size: 12px;
+  background-color: red;
+}
 .crancy-table__main .crancy-table__body td div.status span{
   font-size: 12px;
 }

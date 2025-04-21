@@ -31,6 +31,9 @@
                     <th>
                         <div>Status</div>
                     </th>
+                    <th>
+                        <div>Action</div>
+                    </th>
                 </tr>
             </thead>
             <!-- crancy Table Body -->
@@ -68,6 +71,11 @@
                         <td>
                             <div class="status {{ failed_transaction.status }}">
                                 <span>{{ failed_transaction.status }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <a href="{% url 'transaction:chargeback_form' %}?transaction_id={{failed_transaction.contribution.uuid}}">Chargeback</a>
                             </div>
                         </td>
                     </tr>

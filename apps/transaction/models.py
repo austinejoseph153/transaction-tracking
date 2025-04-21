@@ -52,6 +52,7 @@ class FailedTransaction(models.Model):
     resolved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("Resolved By"), blank=True, null=True)
     notes = models.TextField(verbose_name=_("Resolution Notes"), blank=True, null=True)
     notification = models.ForeignKey("transaction.notification", on_delete=models.CASCADE, blank=True, null=True)
+    charge_back_submitted = models.BooleanField(default=False, verbose_name=_("Chargeback Submitted"))
     
     def __str__(self):
         return f"{self.contribution.user.username} - {self.failure_reason} - {self.detected_at}"

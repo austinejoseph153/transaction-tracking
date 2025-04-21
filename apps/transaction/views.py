@@ -59,6 +59,7 @@ class ChargeBackFormTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ChargeBackFormTemplateView, self).get_context_data(**kwargs)
         context["user"] = user_is_authenticated(self.request)
+        context["transaction_id"] = self.request.GET.get("transaction_id")
         return context
     
     def post(self, request, **kwargs):
@@ -69,9 +70,11 @@ class ChargeBackFormTemplateView(TemplateView):
             messages.error(request, "sufficient information was not provided to perform this action")
             return super(ChargeBackFormTemplateView, self).render_to_response(context)
         submitted_by = User.objects.get(pk=user_id)
-        transaction = FailedTransaction.objects.get(pk=transaction_id)
-        message = request.POST.get("message" or None)
+        transaction = FailedTransaction.objects.get(contribution__uuid=transaction_id)
+        message = request.POST.get("message")
+        print("mesg",message)
         if not message:
+            print("kkhh")
             messages.error(request,"please tell us the reason for submitting this charge back!")
             return super(ChargeBackFormTemplateView, self).render_to_response(context)
         charge_back = ChargebackForm(
@@ -80,6 +83,23 @@ class ChargeBackFormTemplateView(TemplateView):
             explanation = message
 
         )
+        # send notification for charge back to user
+        email_message = """""
+                    Hey, just a heads up - your recent transaction didn't go through. 
+                    The payment failed due to an issue with your bank or card details. our team will
+                    will attend to your complaints and you will be notified when the transaction has been resolved
+        
+                """
+        send_notification(subject="CHARGEBACK FOR FAILED TRANSACTION", 
+                          message=email_message,
+                          recipient=submitted_by.email, 
+                          user=submitted_by,
+                          email_type=3)
+        
+        # redirect user to dashboard after submitting charge back form
+        messages.success(request, "Charge back form submitted successfully")
+        return redirect("user:user_dashboard")
+
 # pament page for daily contribution 
 def daily_contribution_payment(request, slug):
     user = user_is_authenticated(request)
